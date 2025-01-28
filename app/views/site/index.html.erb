@@ -1,0 +1,137 @@
+<body>
+<div class="section has-background-success-95">  
+      <div class="container">
+        <div class="columns">
+          <!-- Left Column with Lorem Ipsum -->
+          <div class="column is-one-third">
+            <div class="content font-inter">
+              <h3 class="title font-lexend">Lorem Ipsum</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+              <p>Vivamus interdum, mauris interdum faucibus fermentum, nulla arcu lacinia nunc, ut pharetra quam sapien vel nisi. Integer vel lacus viverra, dictum ligula at, posuere urna. Ut fringilla velit in risus posuere euismod. Curabitur sed venenatis orci. Vivamus ultricies lorem nec aliquet varius.</p>
+              <p>Lorem ipsum dolor sit met, constecteur adipiscit elit.</p>
+            </div>
+            <div class="container">
+              <div class="notification is-info">
+                <a href="#modal-mapa" class="modal-button">
+                  <img class="image" src="/mapa.png" alt="Mapa Image">
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="container is-fluid">
+            <div class="section has-background-success-95">
+              <div class="columns is-multiline">
+                <div class="column">
+                  <a href="#modal-101" class="modal-button">
+                    <img class="displaysite" src="/101.jpg" alt="Image 101">
+                  </a>
+                </div>
+                <div class="column">
+                  <a href="#modal-106" class="modal-button">
+                    <img class="displaysite" src="/106.jpg" alt="Image 106">
+                  </a>
+                </div>
+              </div>
+              <div class="columns is-multiline">
+                <div class="column">
+                  <a href="#modal-104" class="modal-button">
+                    <img class="displaysite" src="/104.jpg" alt="Image 104">
+                  </a>
+                </div>
+                <div class="column">
+                  <a href="#modal-105" class="modal-button">
+                    <img class="displaysite" src="/105.jpg" alt="Image 105">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="modal-mapa" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <p class="image">
+              <img src="/mapa.png" alt="Mapa">
+            </p>
+            <p class="has-text-centered"><a href="/mapa.png">Download</a></p>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+        <div id="modal-101" class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <p class="image">
+              <img src="/101.jpg" alt="Image 101">
+            </p>
+            <p class="has-text-centered"><a href="/101.jpg">Download</a></p>
+          </div>
+          <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+		<div id="modal-106" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image">
+      <img src="/106.jpg" alt="Image 106">
+    </p>
+    <p class="has-text-centered"><a href="/106.jpg">Download</a></p>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<div id="modal-104" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image">
+      <img src="/104.jpg" alt="Image 104">
+    </p>
+    <p class="has-text-centered"><a href="/104.jpg">Download</a></p>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+<div id="modal-105" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image">
+      <img src="/105.jpg" alt="Image 105">
+    </p>
+    <p class="has-text-centered"><a href="/105.jpg">Download</a></p>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
+      </div>
+
+      <div class="section has-background-success-95">
+        <div class="container is-centered">
+          <div class="columns">
+            <div class="column is-fluid"></div>
+            <div class="column">
+              <button class="button is-large is-success font-inter has-text-white is-fullwidth">Zarezerwuj</button>
+            </div>
+            <div class="column is-fluid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    (document.querySelectorAll('.modal-button') || []).forEach(($trigger) => {
+      const modal = $trigger.getAttribute('href').slice(1);
+      const $target = document.getElementById(modal);
+
+      $trigger.addEventListener('click', () => {
+        $target.classList.add('is-active');
+      });
+
+      $target.addEventListener('click', (event) => {
+        if (event.target === $target || event.target.classList.contains('modal-close')) {
+          $target.classList.remove('is-active');
+        }
+      });
+    });
+  });
+</script>

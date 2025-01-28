@@ -1,0 +1,46 @@
+<body>
+  <div class="section has-background-success-95">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <h1 class="font-contact has-text-centered">Contact us</h1>
+          <%= form_with scope: :contact_form, url:"result", method: :post, local: true do |form| %>
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <%= form.text_field :name, class: "input" %>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Last Name</label>
+              <div class="control">
+                <%= form.text_field :last_name, class: "input" %>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <%= form.email_field :email, class: "input" %>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <%= form.text_area :message, class: "textarea has-fixed-size" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="columns is-centered">
+                  <div class="column">
+                    <%= form.submit "Submit", class: "button is-primary is-full" %>
+                  </div>
+                  </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
