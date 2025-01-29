@@ -1,33 +1,62 @@
-
-<div class="section">
-  <div class="container">
-<div id="calendar">
-  <%= month_calendar do |date| %>
-    <div class="calendar-day" data-date="<%= date.strftime("%Y-%m-%d") %>">
-      <%= date.day %>
-    </div>
-  <% end %>
+<body>
+  <div class="section has-background-success-95">
+	<div class="container has-background-success-95">
+<div class="columns is-multiline">
+<div class="column is-one-third has-background-info-95 font-inter">
+      <div id="calendar">
+        <%= month_calendar do |date| %>
+          <div class="calendar-day font-lobster" data-date="<%= date.strftime("%Y-%m-%d") %>">
+            <div class="hero" id="herohero<%= date.strftime("%Y%m%d") %>">
+              <%= date.day %>
+            </div>
+          </div>
+        <% end %>
+      </div>
 </div>
+<div class="column is-half">
+<div class="section is-small font-inter">
+          <%= form_with scope: :reserve_form, url:"reserve", method: :post, local: true do |form| %>
+<label class="label has-text-centered">First Name</label>
+              <div class="control">
+                <%= form.text_field :first_name, class: "input is-link" %>
+              </div>
+<label class="label has-text-centered">Last Name</label>
+              <div class="control">
+                <%= form.text_field :last_name, class: "input is-link" %>
+              </div>
+              <label class="label has-text-centered">E-mail</label>
+              <div class="control">
+                <%= form.email_field :email, class: "input is-link" %>
+              </div>
+</section>
+<label class="label has-text-centered">Date arrival</label>
+<div class="container has-text-centered">
+	<%= form.date_field :date_arrival, as: :date, value: form.object.try(:strftime,"%m/%d/%Y"), class: 'select is-focused is-large' %></div>
+<label class="label has-text-centered">Date departure</label>
+<div class="container has-text-centered">
+<%= form.date_field :date_departure, as: :date, value: form.object.try(:strftime,"%m/%d/%Y"), class: 'select is-focused is-large' %></div>
+<div class="column has-text-centered"><%= form.submit "Submit", class: "button is-large has-background-info-60 is-rounded" %></div>
+<% end %>
+</div>
+</div>
+    </div>
   </div>
-  </section>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  const calendarDays = document.getElementsByClassName("calendar-day");
+  document.addEventListener("DOMContentLoaded", function() {
+  const calendarDays = document.querySelectorAll(".calendar-day");
 
-  Array.prototype.forEach.call(calendarDays, function(day) {
+  calendarDays.forEach(day => {
     day.addEventListener("click", function() {
-      const date = day.dataset.date;
-      fetch("/calendars/create_event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ date: date })
-      })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+      // Remove 'is-success' from all days
+      calendarDays.forEach(d => {
+        const hero = d.querySelector('.hero');
+        hero.classList.remove('is-link');
+      });
+      
+      const hero = this.querySelector('.hero');
+      hero.classList.add('is-link');
     });
   });
-    });
-    </script>
+});
+  </script>
+</body>
