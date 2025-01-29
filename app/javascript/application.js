@@ -2,8 +2,3 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    new Glide('.glide').mount();
-  });
-</script>

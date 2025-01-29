@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dateandtime/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,4 +17,6 @@ Rails.application.routes.draw do
   get "contact", to: "contact#index"
   get "rules", to: "rules#index"
   get "help", to: "help#index"
+  get "dateandtime", to: "dateandtime#index"
+  post "calendars/create_event", to:"dateandtime#rezerwacja"
 end
