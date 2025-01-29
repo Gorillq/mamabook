@@ -16,26 +16,26 @@
 <div class="column is-half">
 <div class="section is-small font-inter">
           <%= form_with scope: :reserve_form, url:"reserve", method: :post, local: true do |form| %>
-<label class="label has-text-centered">First Name</label>
+<label class="label has-text-centered has-text-weight-bold">First Name</label>
               <div class="control">
                 <%= form.text_field :first_name, class: "input is-link" %>
               </div>
-<label class="label has-text-centered">Last Name</label>
+<label class="label has-text-centered has-text-weight-bold">Last Name</label>
               <div class="control">
                 <%= form.text_field :last_name, class: "input is-link" %>
               </div>
-              <label class="label has-text-centered">E-mail</label>
+              <label class="label has-text-centered has-text-weight-bold">E-mail</label>
               <div class="control">
                 <%= form.email_field :email, class: "input is-link" %>
               </div>
 </section>
-<label class="label has-text-centered">Date arrival</label>
+<label class="label has-text-centered has-text-weight-semibold">Date arrival</label>
 <div class="container has-text-centered">
 	<%= form.date_field :date_arrival, as: :date, value: form.object.try(:strftime,"%m/%d/%Y"), class: 'select is-focused is-large' %></div>
-<label class="label has-text-centered">Date departure</label>
+<label class="label has-text-centered has-text-weight-semibold">Date departure</label>
 <div class="container has-text-centered">
 <%= form.date_field :date_departure, as: :date, value: form.object.try(:strftime,"%m/%d/%Y"), class: 'select is-focused is-large' %></div>
-<div class="column has-text-centered"><%= form.submit "Submit", class: "button is-large has-background-info-60 is-rounded" %></div>
+<div class="column has-text-centered"><%= form.submit "Next", class: "button is-large has-background-info-60 is-rounded" %></div>
 <% end %>
 </div>
 </div>

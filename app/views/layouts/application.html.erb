@@ -40,8 +40,8 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start font-lobster">
+    <div id="navbar" class="navbar-menu">
+      <div class="navbar-start font-lobster has-background-success-soft">
         <a class="navbar-item" href="/about">
           About us
         </a>
@@ -54,12 +54,12 @@
             Help
           </a>
 
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/contact">
+          <div class="navbar-dropdown has-background-success-soft">
+            <a class="navbar-item has-background-success-soft" href="/contact">
               Contact
             </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="/help">
+            <hr class="navbar-divider has-background-success-soft">
+            <a class="navbar-item has-background-success-soft has-text-danger" href="/help">
               Report an issue
             </a>
           </div>
@@ -67,7 +67,7 @@
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="navbar-item has-background-success-soft">
           <div class="buttons">
             <a class="button has-background-info-70 font-lobster is-rounded" href="/dateandtime">
               Calendar
@@ -86,11 +86,24 @@
       <nav class="breadcrumb is-centered has-text-centered">
         <ul><li><a href="#">goro</a></li>
           <li><a href="#">goro</a></li><li><a href="#">goro</a></li><li><a href="#">goro</a></li></ul>
+<div class="section"></div>
       <p><strong>Hello, Friend</strong></p>
       <p>Hello, Friend</p>
       <p>Hello, Friend</p>
 
   </footer>
   </body>
-   <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
+   <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  $navbarBurgers.forEach( el => {
+    el.addEventListener('click', () => {
+      const target = el.dataset.target;
+      const $target = document.getElementById(target);
+      el.classList.toggle('is-active');
+      $target.classList.toggle('is-active');
+    });
+  });
+});
+</script>
 </html>

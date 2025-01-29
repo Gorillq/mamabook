@@ -3,6 +3,8 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-half">
+          <p class="is-family-secondary is-size-3 has-text-centered has-text-weight-semibold has-text-danger">Feel free to contact us!</p>
+          <div class="section is-small"></section>
           <h1 class="font-contact has-text-centered">Contact us</h1>
           <%= form_with scope: :contact_form, url:"result", method: :post, local: true do |form| %>
             <div class="field">
@@ -32,8 +34,8 @@
             <div class="field">
               <div class="control">
                 <div class="columns is-centered">
-                  <div class="column">
-                    <%= form.submit "Submit", class: "button is-primary is-full" %>
+                  <div class="column has-text-centered">
+                    <%= form.submit "Submit", class: "button is-primary is-large" %>
                   </div>
                   </div>
               </div>
