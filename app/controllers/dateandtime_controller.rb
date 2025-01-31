@@ -4,9 +4,8 @@ class DateandtimeController < ApplicationController
   end
   def create_event
     @date = params[:date]
-    #booking
-    #
+    # booking
     Rails.logger.info("Stworzono rezerwacje #{date}")
-    render json: {success: true}
+    render json: { success: true }
   end
 end
