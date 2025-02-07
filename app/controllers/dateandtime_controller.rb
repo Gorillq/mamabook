@@ -1,11 +1,34 @@
 class DateandtimeController < ApplicationController
   def index
+	@reserve_form = ReserveForm.new
     @date = Date.today
   end
+
   def create_event
-    @date = params[:date]
-    # booking
-    Rails.logger.info("Stworzono rezerwacje #{date}")
-    render json: { success: true }
+    @reserve_form = ReserveForm.new(reserve_form_params)
+    if @reserve_form.valid? && params[:stripeToken].present?
+      # Use Stripe to charge the card
+      begin
+        charge = Stripe::Charge.create(
+          amount: 1000, # Amount in cents
+          currency: 'usd',
+          description: 'Example charge',
+          source: params[:stripeToken]
+        )
+        # If payment was successful, proceed with reservation logic
+        Rails.logger.info("Stworzono rezerwacje dla #{@reserve_form.first_name} #{@reserve_form.last_name} od #{@reserve_form.date_arrival} do #{@reserve_form.date_departure}")
+        render json: { success: true, message: "Reservation and Payment processed successfully" }
+      rescue Stripe::CardError => e
+        render json: { success: false, errors: [e.message] }, status: :unprocessable_entity
+      end
+    else
+      render json: { success: false, errors: @reserve_form.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def reserve_form_params
+    params.require(:reserve_form).permit(:first_name, :last_name, :email, :date_arrival, :date_departure)
   end
 end

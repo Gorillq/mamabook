@@ -6,8 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" rel="stylesheet">
-      <link href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -26,84 +25,122 @@
   </head>
 
   <body>
-  <!-- Navbar -->
-  <nav class="navbar has-background-success-soft" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <img src="/nlogo.png" width="132" height="28" class="image is-fluid">
-      </a>
-
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbar" class="navbar-menu">
-      <div class="navbar-start font-lobster has-background-success-soft">
-        <a class="navbar-item" href="/about">
-          About us
-        </a>
-        <a class="navbar-item" href="/rules">
-          Rules
+    <!-- Navbar -->
+    <nav class="navbar has-background-success-soft" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <img src="/nlogo.png" width="132" height="28" class="image is-fluid">
         </a>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">
-            Help
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbar" class="navbar-menu">
+        <div class="navbar-start font-lobster has-background-success-soft">
+          <a class="navbar-item" href="/about">
+            About us
+          </a>
+          <a class="navbar-item" href="/rules">
+            Rules
           </a>
 
-          <div class="navbar-dropdown has-background-success-soft">
-            <a class="navbar-item has-background-success-soft" href="/contact">
-              Contact
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="#">
+              Help
             </a>
-            <hr class="navbar-divider has-background-success-soft">
-            <a class="navbar-item has-background-success-soft has-text-danger" href="/help">
-              Report an issue
-            </a>
-          </div>
-        </div>
-      </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item has-background-success-soft">
-          <div class="buttons">
-            <a class="button has-background-info-70 font-lobster is-rounded" href="/dateandtime">
-              Calendar
-            </a>
-            <a class="button has-background-success-60 font-lobster is-rounded" href="/">
-              Login
-            </a>
+            <div class="navbar-dropdown has-background-success-soft">
+              <a class="navbar-item has-background-success-soft" href="/contact">
+                Contact
+              </a>
+              <hr class="navbar-divider has-background-success-soft">
+              <a class="navbar-item has-background-success-soft has-text-danger" href="/help">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item has-background-success-soft">
+        <%= link_to url_for(locale: :en), class: "font-lobster is-rounded #{'is-active' if I18n.locale == :en}" do %>
+          <span class="column has-background-success-soft fi fi-gb"></span>
+        <% end %>
+      </div>
+      <div class="navbar-item has-background-success-soft">
+        <%= link_to url_for(locale: :de), class: "font-lobster is-rounded #{'is-active' if I18n.locale == :de}" do %>
+          <span class="column has-background-success-soft fi fi-de"></span>
+        <% end %>
+      </div>
+      <div class="navbar-item has-background-success-soft">
+        <%= link_to url_for(locale: :pl), class: "font-lobster is-rounded #{'is-active' if I18n.locale == :pl}" do %>
+          <span class="column has-background-success-soft fi fi-pl"></span>
+        <% end %>
+      </div>
+      <div class="navbar-item has-background-success-soft">
+        <%= link_to url_for(locale: :nl), class: "font-lobster is-rounded #{'is-active' if I18n.locale == :nl}" do %>
+          <span class="column has-background-success-soft fi fi-nl"></span>
+        <% end %>
+      </div>
+<div class="column"></div>
+            <div class="buttons">
+              <a class="button has-background-info-70 font-lobster is-rounded" href="/dateandtime">
+                Calendar
+              </a>
+              <a class="button has-background-success-60 font-lobster is-rounded is-static" href="/">
+                Login
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </nav>
-  <%= yield %>
-  <div class="section is-small has-background-success-95"></section>
-  <footer class="footer has-background-success-soft">
+    </nav>
+    
+    <%= yield %>
+    <div class="section is-small has-background-success-95"></div>
+    <footer class="footer has-background-success-soft">
       <nav class="breadcrumb is-centered has-text-centered">
-        <ul><li><a href="#">goro</a></li>
-          <li><a href="#">goro</a></li><li><a href="#">goro</a></li><li><a href="#">goro</a></li></ul>
-<div class="section"></div>
-      <p><strong>Hello, Friend</strong></p>
-      <p>Hello, Friend</p>
-      <p>Hello, Friend</p>
-
-  </footer>
+        <ul>
+          <li><a href="https://www.booking.com/hotel/pl/marina-old-town"><img src="/airbnb.svg" alt="airbnb" class="icon is-large"></a></li>
+          <li><a href="https://www.booking.com/hotel/pl/marina-old-town"><img src="/booking_logo.svg" alt="bookingcom" class="icon is-large"></a></li>
+          <li><a href="#">goro</a></li>
+          <li><a href="#">goro</a></li>
+        </ul>
+        <div class="section"></div>
+        <p><strong>Hello, Friend</strong></p>
+        <p>Hello, Friend</p>
+        <p>Hello, Friend</p>
+      </nav>
+    </footer>
   </body>
-   <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  $navbarBurgers.forEach( el => {
-    el.addEventListener('click', () => {
-      const target = el.dataset.target;
-      const $target = document.getElementById(target);
-      el.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      $navbarBurgers.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
     });
-  });
-});
-</script>
+    /*
+    document.addEventListener('DOMContentLoaded', () => {
+      const $dropdown = Array.prototype.slice.call(document.querySelectorAll('.navbar-dropdrown'), 0);
+      $dropdown.forEach( el => {
+        el.addEventListener('click', () => {
+          const target = el.dataset.target;
+          const $target = document.getElementById(target);
+          el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+        });
+      });
+    });
+    */
+  </script>
 </html>

@@ -64,3 +64,5 @@ end
 gem "dartsass-rails", "~> 0.5.1"
 
 gem "simple_calendar"
+
+gem 'font-awesome-sass', '~> 6.7.2'
