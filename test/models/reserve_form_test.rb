@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ReservationTest < ActiveSupport::TestCase
+class ReserveFormTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
