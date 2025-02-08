@@ -1,173 +1,256 @@
-  <div class="section has-background-success-95">
-    <div class="container has-background-success-95">
-      <div class="columns">
-        <div class="column is-one-third is-centered">
-          <div id="infoBox" class="notification is-warning" style="display: none;"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Reservation</title>
+  <link rel="stylesheet" href="path/to/your/css/styles.css">
+</head>
+<body>
+<div class="section has-background-success-95">
+  <div class="container has-background-success-95">
+    <div class="columns">
+      <div class="column is-one-third is-centered">
+        <div id="infoBox" class="notification is-warning" style="display: none;"></div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-one-third has-background-info-95 font-inter">
+        <div id="calendar">
+<p class="is-size-7 has-text-centered"><strong>press<span class="has-text-link"> today</span> below to <span class="has-text-danger">reset</span> calendar</strong></p>
+          <%= month_calendar do |date| %>
+            <div class="calendar-day font-lobster is-size-3" data-date="<%= date.strftime("%Y-%m-%d") %>">
+              <div class="hero" id="herohero<%= date.strftime("%Y%m%d") %>">
+                <%= date.day %>
+              </div>
+              <p class="is-size-7"><i>225</i></p>
+            </div>
+          <% end %>
         </div>
       </div>
-      <div class="columns">
-        <div class="column is-one-third has-background-info-95 font-inter">
-          <div id="calendar">
-            <%= month_calendar do |date| %>
-              <div class="calendar-day font-lobster" data-date="<%= date.strftime("%Y-%m-%d") %>">
-                <div class="hero" id="herohero<%= date.strftime("%Y%m%d") %>">
-                  <%= date.day %>
-                </div>
+      <div class="column is-one-fifths"></div>
+      <div class="column is-half">
+        <div class="section is-small font-inter">
+          <%= form_with model: @reserve_form, url: create_event_path, method: :post, local: true do |form| %>
+            <div class="field">
+              <%= form.label :first_name, "First Name", class: "label has-text-centered has-text-weight-bold" %>
+              <div class="control">
+                <%= form.text_field :first_name, class: "input is-link" %>
               </div>
-            <% end %>
-          </div>
-        </div>
-        <div class="column is-one-fifths"></div>
-        <div class="column is-half">
-          <div class="section is-small font-inter">
-            <%= form_with model: @reserve_form, url: create_event_path, method: :post, local: true do |form| %>
-              <div class="field">
-                <%= form.label :first_name, "First Name", class: "label has-text-centered has-text-weight-bold" %>
-                <div class="control">
-                  <%= form.text_field :first_name, class: "input is-link" %>
-                </div>
-                <% if @reserve_form.errors[:first_name].any? %>
-                  <p class="help is-danger"><%= @reserve_form.errors[:first_name].first %></p>
-                <% end %>
-              </div>
+              <% if @reserve_form.errors[:first_name].any? %>
+                <p class="help is-danger"><%= @reserve_form.errors[:first_name].first %></p>
+              <% end %>
+            </div>
 
-              <div class="field">
-                <%= form.label :last_name, "Last Name", class: "label has-text-centered has-text-weight-bold" %>
-                <div class="control">
-                  <%= form.text_field :last_name, class: "input is-link" %>
-                </div>
-                <% if @reserve_form.errors[:last_name].any? %>
-                  <p class="help is-danger"><%= @reserve_form.errors[:last_name].first %></p>
-                <% end %>
+            <div class="field">
+              <%= form.label :last_name, "Last Name", class: "label has-text-centered has-text-weight-bold" %>
+              <div class="control">
+                <%= form.text_field :last_name, class: "input is-link" %>
               </div>
+              <% if @reserve_form.errors[:last_name].any? %>
+                <p class="help is-danger"><%= @reserve_form.errors[:last_name].first %></p>
+              <% end %>
+            </div>
 
-              <div class="field">
-                <%= form.label :email, "E-mail", class: "label has-text-centered has-text-weight-bold" %>
-                <div class="control">
-                  <%= form.email_field :email, class: "input is-link" %>
-                </div>
-                <% if @reserve_form.errors[:email].any? %>
-                  <p class="help is-danger"><%= @reserve_form.errors[:email].first %></p>
-                <% end %>
+            <div class="field">
+              <%= form.label :email, "E-mail", class: "label has-text-centered has-text-weight-bold" %>
+              <div class="control">
+                <%= form.email_field :email, class: "input is-link" %>
               </div>
+              <% if @reserve_form.errors[:email].any? %>
+                <p class="help is-danger"><%= @reserve_form.errors[:email].first %></p>
+              <% end %>
+            </div>
 
-              <div class="field has-text-centered">
-                <%= form.label :date_arrival, "Date arrival", class: "label has-text-centered has-text-weight-semibold" %>
-                <div class="control">
-                  <%= form.date_field :date_arrival, id: 'date_arrival', class: 'select is-focused is-large' %>
-                </div>
-                <% if @reserve_form.errors[:date_arrival].any? %>
-                  <p class="help is-danger"><%= @reserve_form.errors[:date_arrival].first %></p>
-                <% end %>
+            <div class="field has-text-centered">
+              <%= form.label :date_arrival, "Date arrival", class: "label has-text-centered has-text-weight-semibold" %>
+              <div class="control">
+                <%= form.date_field :date_arrival, id: 'date_arrival', class: 'select is-focused is-large' %>
               </div>
+              <% if @reserve_form.errors[:date_arrival].any? %>
+                <p class="help is-danger"><%= @reserve_form.errors[:date_arrival].first %></p>
+              <% end %>
+            </div>
 
-              <div class="field has-text-centered">
-                <%= form.label :date_departure, "Date departure", class: "label has-text-centered has-text-weight-semibold" %>
-                <div class="control">
-                  <%= form.date_field :date_departure, id: 'date_departure', class: 'select is-focused is-large' %>
-                </div>
-                <% if @reserve_form.errors[:date_departure].any? %>
-                  <p class="help is-danger"><%= @reserve_form.errors[:date_departure].first %></p>
-                <% end %>
+            <div class="field has-text-centered">
+              <%= form.label :date_departure, "Date departure", class: "label has-text-centered has-text-weight-semibold" %>
+              <div class="control">
+                <%= form.date_field :date_departure, id: 'date_departure', class: 'select is-focused is-large' %>
               </div>
-
-              <div class="column has-text-centered">
-                <%= form.submit "Next", class: "button is-large has-background-info-60 is-rounded" %>
-              </div>
-            <% end %>
-          </div>
+              <% if @reserve_form.errors[:date_departure].any? %>
+                <p class="help is-danger"><%= @reserve_form.errors[:date_departure].first %></p>
+              <% end %>
+            </div>
+            <div id="totalPrice" class="has-text-centered">Price: PLN 0</div>
+            <div class="column has-text-centered">
+              <%= form.submit "Next", class: "button is-large has-background-info-60 is-rounded" %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
-    <script>
-      document.addEventListener("DOMContentLoaded", function() {
-        let firstClick = null;
-        let secondClick = null;
-        const calendarDays = document.querySelectorAll(".calendar-day");
-        const today = new Date(); // today
-        const MIN_DAYS = 2; 
-        const infoBox = document.getElementById('infoBox');
-        const form = document.querySelector('form');
+  </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
 
-        calendarDays.forEach(day => {
-          const date = new Date(day.getAttribute('data-date'));
+  let firstClick = null;
+  let secondClick = null;
+  const calendarDays = document.querySelectorAll(".calendar-day");
+  const today = new Date();
+  const MIN_DAYS = 2; 
+  const infoBox = document.getElementById('infoBox');
+  const form = document.querySelector('form');
+  document.getElementById('date_arrival').addEventListener('change', function() {
+    calculateTotalPrice();
+    updateCalendar();
+  });
+  document.getElementById('date_departure').addEventListener('change', function() {
+    calculateTotalPrice();
+    updateCalendar();
+  });
+  calendarDays.forEach(day => {
+    const date = new Date(day.getAttribute('data-date'));
 
-          //future
-          if (date > today) {
-            day.addEventListener("click", function() {
-              const hero = this.querySelector('.hero');
-              const clickedDate = this.getAttribute('data-date');
+    if (date > today) {
+      day.addEventListener("click", function() {
+        const hero = this.querySelector('.hero');
+        const clickedDate = this.getAttribute('data-date');
 
-              //remove
-              calendarDays.forEach(d => {
-                d.querySelector('.hero').classList.remove('is-link');
-              });
-
-              if (!firstClick) {
-                // First click
-                firstClick = clickedDate;
-                hero.classList.add('is-link');
-                document.getElementById('date_arrival').value = firstClick;
-              } else if (!secondClick) {
-                // Second click
-                let startDate = new Date(firstClick);
-                let endDate = new Date(clickedDate);
-
-                if (startDate > endDate) {
-                  [startDate, endDate] = [endDate, startDate];
-                }
-
-                const dayDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
-
-                if (dayDifference >= MIN_DAYS) { 
-                  secondClick = clickedDate;
-
-                  if (new Date(firstClick) > new Date(secondClick)) {
-                    document.getElementById('date_arrival').value = secondClick;
-                    document.getElementById('date_departure').value = firstClick;
-                  } else {
-                    document.getElementById('date_departure').value = secondClick;
-                  }
-                  //range
-                  while (startDate <= endDate) {
-                    const dayElement = document.querySelector(`[data-date="${startDate.toISOString().split('T')[0]}"]`);
-                    if (dayElement) {
-                      dayElement.querySelector('.hero').classList.add('is-link');
-                    }
-                    startDate.setDate(startDate.getDate() + 1);
-                  }
-
-                  firstClick = null;
-                  secondClick = null;
-                } else {
-                  hero.classList.add('is-link');
-                  infoBox.textContent = `Minimum stay is ${MIN_DAYS} days.`;
-                  infoBox.style.display = 'block';
-                }
-              } else {
-                hero.classList.add('is-link');
-                document.getElementById('date_arrival').value = clickedDate;
-                document.getElementById('date_departure').value = '';
-                firstClick = clickedDate;
-                secondClick = null;
-              }
-            });
-          } else {
-            day.style.cursor = 'not-allowed';
-            day.classList.add('is-disabled');
-          }
+        calendarDays.forEach(d => {
+          d.querySelector('.hero').classList.remove('is-link');
         });
 
-        form.addEventListener('submit', function(event) {
-          const dateArrival = new Date(document.getElementById('date_arrival').value);
-          const dateDeparture = new Date(document.getElementById('date_departure').value);
-          const dayDifference = (dateDeparture - dateArrival) / (1000 * 60 * 60 * 24);
+        if (!firstClick) {
+          firstClick = clickedDate;
+          hero.classList.add('is-link');
+          document.getElementById('date_arrival').value = firstClick;
+          calculateTotalPrice();
+          updateCalendar();
+        } else if (!secondClick) {
+          let startDate = new Date(firstClick);
+          let endDate = new Date(clickedDate);
 
-          if (dateArrival >= dateDeparture || dayDifference < MIN_DAYS) {
-            event.preventDefault();
-            infoBox.textContent = `Please ensure the departure date is after the arrival date and the minimum stay is ${MIN_DAYS} days.`;
+          if (startDate > endDate) {
+            [startDate, endDate] = [endDate, startDate];
+          }
+
+          const dayDifference = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+          if (dayDifference >= MIN_DAYS) { 
+            secondClick = clickedDate;
+
+            if (new Date(firstClick) > new Date(secondClick)) {
+              document.getElementById('date_arrival').value = secondClick;
+              document.getElementById('date_departure').value = firstClick;
+            } else {
+              document.getElementById('date_departure').value = secondClick;
+            }
+            while (startDate <= endDate) {
+              const dayElement = document.querySelector(`[data-date="${startDate.toISOString().split('T')[0]}"]`);
+              if (dayElement) {
+                dayElement.querySelector('.hero').classList.add('is-link');
+              }
+              startDate.setDate(startDate.getDate() + 1);
+            }
+
+            calculateTotalPrice();
+            updateCalendar();
+            firstClick = null;
+            secondClick = null;
+          } else {
+            hero.classList.add('is-link');
+            infoBox.textContent = `Minimum stay is ${MIN_DAYS} days.`;
             infoBox.style.display = 'block';
           }
-        });
+        } else {
+          hero.classList.add('is-link');
+          document.getElementById('date_arrival').value = clickedDate;
+          document.getElementById('date_departure').value = '';
+          calculateTotalPrice();
+          updateCalendar();
+          firstClick = clickedDate;
+          secondClick = null;
+        }
       });
-    </script>
+    } else {
+      day.style.cursor = 'not-allowed';
+      day.classList.add('is-disabled');
+    }
+  });
+
+  form.addEventListener('submit', function(event) {
+    const dateArrival = new Date(document.getElementById('date_arrival').value);
+    const dateDeparture = new Date(document.getElementById('date_departure').value);
+    const dayDifference = (dateDeparture - dateArrival) / (1000 * 60 * 60 * 24);
+
+    if (dateArrival >= dateDeparture || dayDifference < MIN_DAYS) {
+      event.preventDefault();
+      infoBox.textContent = `Please ensure the departure date is after the arrival date and the minimum stay is ${MIN_DAYS} days.`;
+      infoBox.style.display = 'block';
+    } else {
+      const fields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="date"]');
+      let allFilled = true;
+      fields.forEach(field => {
+        if (!field.value.trim()) {
+          allFilled = false;
+        }
+      });
+
+      if (!allFilled) {
+        event.preventDefault();
+        infoBox.textContent = "Please fill out all fields before submitting.";
+        infoBox.style.display = 'block';
+      }
+    }
+  });
+});
+
+function calculateTotalPrice() {
+  const fixedPrice = 225; 
+  const dateArrival = new Date(document.getElementById('date_arrival').value);
+  const dateDeparture = new Date(document.getElementById('date_departure').value);
+
+  if (!document.getElementById('date_arrival').value || !document.getElementById('date_departure').value) {
+    document.getElementById('totalPrice').textContent = `Price: PLN 0`;
+    return;
+  }
+
+  if (isNaN(dateArrival.getTime()) || isNaN(dateDeparture.getTime())) {
+    document.getElementById('totalPrice').textContent = `Price: PLN 0`;
+  } else {
+    const numberOfDays = Math.ceil((dateDeparture - dateArrival) / (1000 * 60 * 60 * 24));
+    const totalPrice = fixedPrice * numberOfDays;
+    document.getElementById('totalPrice').textContent = `Price: PLN ${totalPrice.toFixed(2)}`;
+  }
+}
+
+function updateCalendar() {
+  const arrival = document.getElementById('date_arrival').value;
+  const departure = document.getElementById('date_departure').value;
+  const calendarDays = document.querySelectorAll(".calendar-day");
+
+  calendarDays.forEach(day => {
+    day.querySelector('.hero').classList.remove('is-link');
+  });
+
+  if (arrival) {
+    const startDate = new Date(arrival);
+    const dayElement = document.querySelector(`[data-date="${startDate.toISOString().split('T')[0]}"]`);
+    if (dayElement) {
+      dayElement.querySelector('.hero').classList.add('is-link');
+    }
+
+    if (departure) {
+      const endDate = new Date(departure);
+      let currentDate = new Date(startDate);
+      while (currentDate <= endDate) {
+        const dayElement = document.querySelector(`[data-date="${currentDate.toISOString().split('T')[0]}"]`);
+        if (dayElement) {
+          dayElement.querySelector('.hero').classList.add('is-link');
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+    }
+  }
+}
+</script>

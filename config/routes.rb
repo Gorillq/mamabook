@@ -19,5 +19,5 @@ Rails.application.routes.draw do
   get "help", to: "help#index"
   get "dateandtime", to: "dateandtime#index"
   post "create_event", to: "dateandtime#reze"
-  get 'warn', to: 'errors#warn', as: 'warn'
+  get "warn", to: "errors#warn", as: "warn"
 end

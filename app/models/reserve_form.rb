@@ -7,7 +7,7 @@ class ReserveForm
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :validate_date_range
 
-  def save
+  def perform_save
     if valid?
       Reservation.create(
         first_name: first_name,
@@ -17,6 +17,7 @@ class ReserveForm
         date_departure: date_departure
       )
     else
+      Rails.logger.error("Failed to save reservation: #{errors.full_messages.join(', ')}")
       false
     end
   end
@@ -24,7 +25,7 @@ class ReserveForm
   private
 
   def validate_date_range
-    if date_arrival.present? && date_departure.present?
+    if date_arrival && date_departure
       errors.add(:date_departure, "must be after the arrival date") if date_arrival >= date_departure
     end
   end
