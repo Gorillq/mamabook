@@ -8,9 +8,9 @@ class DateandtimeController < ApplicationController
     @reserve_form = ReserveForm.new(reserve_form_params)
     if @reserve_form.save
       Rails.logger.info("Stworzono rezerwacje dla #{@reserve_form.first_name} #{@reserve_form.last_name} od #{@reserve_form.date_arrival} do #{@reserve_form.date_departure}")
-      render json: { success: true, message: "Reservation processed successfully" }
+      redirect_to root_path, notice: "Reservation processed successfully"
     else
-      render json: { success: false, errors: @reserve_form.errors.full_messages }, status: :unprocessable_entity
+      redirect_to warn_path
     end
   end
 
