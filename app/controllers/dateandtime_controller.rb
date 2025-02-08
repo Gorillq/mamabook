@@ -1,6 +1,6 @@
 class DateandtimeController < ApplicationController
   def index
-	@reserve_form = ReserveForm.new
+  @reserve_form = ReserveForm.new
     @date = Date.today
   end
 
@@ -11,15 +11,15 @@ class DateandtimeController < ApplicationController
       begin
         charge = Stripe::Charge.create(
           amount: 1000, # Amount in cents
-          currency: 'usd',
-          description: 'Example charge',
+          currency: "usd",
+          description: "Example charge",
           source: params[:stripeToken]
         )
         # If payment was successful, proceed with reservation logic
         Rails.logger.info("Stworzono rezerwacje dla #{@reserve_form.first_name} #{@reserve_form.last_name} od #{@reserve_form.date_arrival} do #{@reserve_form.date_departure}")
         render json: { success: true, message: "Reservation and Payment processed successfully" }
       rescue Stripe::CardError => e
-        render json: { success: false, errors: [e.message] }, status: :unprocessable_entity
+        render json: { success: false, errors: [ e.message ] }, status: :unprocessable_entity
       end
     else
       render json: { success: false, errors: @reserve_form.errors.full_messages }, status: :unprocessable_entity
