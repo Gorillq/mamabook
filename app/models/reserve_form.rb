@@ -7,6 +7,20 @@ class ReserveForm
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :validate_date_range
 
+  def save
+    if valid?
+      Reservation.create(
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        date_arrival: date_arrival,
+        date_departure: date_departure
+      )
+    else
+      false
+    end
+  end
+
   private
 
   def validate_date_range

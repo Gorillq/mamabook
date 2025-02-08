@@ -18,5 +18,6 @@ Rails.application.routes.draw do
   get "rules", to: "rules#index"
   get "help", to: "help#index"
   get "dateandtime", to: "dateandtime#index"
-  post "calendars/create_event", to: "dateandtime#rezerwacja"
+  post "create_event", to: "dateandtime#reze"
+  get 'warn', to: 'errors#warn', as: 'warn'
 end
